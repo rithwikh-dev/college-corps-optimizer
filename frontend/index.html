@@ -33,6 +33,13 @@
 
                 <label for="hours-input">Hours Worked:</label>
                 <input type="number" id="hours-input" min="0" max="24" step=".25" required>
+
+                <label for="category-select">Service Type:</label>
+                <select id="category-select" required>
+                    <option value ="" disabled selected>-- Choose a Category --</option>
+                    <option value ="training">Training Hours</option>
+                    <option value="service">Service Hours</option>
+                </select>
             </form>
         </section>
 
