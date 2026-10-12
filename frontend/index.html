@@ -25,7 +25,15 @@
     <main class ="dashboard-container">
         
         <section class ="card input-section">
+
             <p>Log your hours</p>
+            <form id ="timesheet-form">
+                <label for="date-input">Date:</label>
+                <input type="date" id = "date-input" required>
+
+                <label for="hours-input">Hours Worked:</label>
+                <input type="number" id="hours-input" min="0" max="24" step=".25" required>
+            </form>
         </section>
 
         <section class = "card stats-section">
