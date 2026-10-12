@@ -27,11 +27,28 @@ form{
 
 /*Stylization for date selection boxes*/
 input[type="date"]{
-    color-scheme: dark;
-    accent-color: #1e3a8a;
+    background-color: #e4e9f9;
+    color: #1e3a8a; /* Makes the typed text blue */
+    font-weight: bold;
+    border: 2px solid #1e3a8a;
+    padding: 10px;
+    border-radius: 6px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+/*stylization for the little calnedar icon in the entry box*/
+input[type="date"]::-webkit-calendar-picker-indicator{
+    cursor: pointer;
+    border-radius: 4px;
+    filter: invert(18%) sepia(74%) saturate(2320%) hue-rotate(218deg) brightness(93%) contrast(92%);
 }
 
 /*Stylization for numerical hour entry boxes*/
 input[type="number"]{
-    color-scheme: dark;
+    background-color: #e4e9f9;
+    color: #1e3a8a; /* Makes the typed text blue */
+    font-weight: bold;
+    border: 2px solid #1e3a8a;
+    padding: 10px;
+    border-radius: 6px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
