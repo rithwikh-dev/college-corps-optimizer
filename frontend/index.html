@@ -41,9 +41,11 @@
                     <option value="service">Service Hours</option>
                 </select>
 
-                <button type="submit">Log Hours</button>
+                <button type="submit" id="log-hours">Log Hours</button>
             </form>
         </section>
+
+        <!--Righthand column for stats and data tracking!-->
 
         <section class = "card stats-section">
             <p>Important Statistics</p>
@@ -54,6 +56,29 @@
                 <div class="stats-display">
                     <p>Total Hours Logged: <strong id="total-hours-text">0</strong>/450 hrs</p>
                     <p>Remaining Hours Needed: <strong id="remaining-hours-text">450</strong> hrs</p>
+                </div>
+
+                <div class = "history-container">
+
+        <!--Table showing previous shifts history-->
+
+                    <h3>Logged Shifts History</h3>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Hours</th>
+                                <th>Category</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="history-log-table">
+
+                        </tbody>
+
+                        
+                    </table>
                 </div>
         </section>
 
