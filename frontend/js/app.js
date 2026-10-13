@@ -10,6 +10,11 @@ const historyLogTable = document.getElementById('history-log-table');
 const tabButtons = document.querySelectorAll('.nav-btn');
 const tabPanels = document.querySelectorAll('.tab-content');
 
+const webcamFeed = document.getElementById('webcam-feed');
+const captureBtn = document.getElementById('capture-btn');
+const snapshotCanvas =document.getElementById('snapshot-canvas');
+const ocrOutputText = document.getElementById('ocr-output-text');
+
 let totalHours = 0;
 let targetHours = 450;
 
@@ -28,6 +33,21 @@ tabButtons.forEach(button =>{
     });
 });
 
+function startWebcam(){
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+
+        navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}})
+            .then(function(stream){
+                webcamFeed.srcObject = stream;
+            })
+            .catch(function(error){
+                console.error("Webcam Access was blocked or denied: ", error);
+                ocrOutputText.textContent= "Error: Camera Access was denied by browser permissions.";
+            });
+    }
+}
+
+startWebcam();
 
 function updateDashboard(){
     let remaining = targetHours -totalHours;

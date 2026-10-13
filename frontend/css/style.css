@@ -176,6 +176,21 @@ nav-btn:hover{
     border-bottom: 2px solid #b97210;
 }
 
+.scanner-container{
+    max-width: 500px;
+    margin: 20px auto;
+    border: 3px solid #1e3a8a;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #000;
+}
+
+#webcam-feed{
+    width: 100%;
+    height: auto;
+    display:black;
+}
+
 #log-hours{
     margin: 20px;
     border: 2px solid #1e3a8a;

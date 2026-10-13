@@ -12,6 +12,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
     <link rel="manifest" href="images/favicon/site.webmanifest">
 
+    <script src="https://jsdelivr.net"></script>
+
     <link rel="stylesheet" href="css/style.css">
 
     <script src="js/app.js" defer></script>
@@ -98,6 +100,21 @@
             <div class ="card full-card">
                 <h2>One-time Service Webcam Scanner</h2>
                 <p>Position your half-page template form in front of your camera to extract data!</p>
+
+                <div class ="scanner-container">
+                    <video id="webcam-feed autoplay playsinline"></video>
+
+                    <canvas id="snapshot-canvas" style="display:none;"></canvas>
+
+                </div>
+
+                <button id="capture-btn">Scan Document</button>
+                <div class ="scan-results-box">
+                    <h3>OCR Extracted Raw Text: </h3>
+                    <p id="ocr-output-text">Awaiting Scan Submission...</p>
+                    
+                </div>
+
             </div>
 
         </section>
