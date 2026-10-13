@@ -188,7 +188,28 @@ nav-btn:hover{
 #webcam-feed{
     width: 100%;
     height: auto;
-    display:black;
+    display: block;
+}
+
+#capture-btn{
+    background-color: #1e3a8a;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: block;
+    margin: 15px auto;
+}
+
+.scan-results-box{
+    background-color: #f8fafc;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px dashed #cbd5e1;
+    margin-top: 20px;
 }
 
 #log-hours{
@@ -199,3 +220,4 @@ nav-btn:hover{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #1e3a8a;
 }
+

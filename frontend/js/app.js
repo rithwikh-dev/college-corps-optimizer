@@ -10,44 +10,78 @@ const historyLogTable = document.getElementById('history-log-table');
 const tabButtons = document.querySelectorAll('.nav-btn');
 const tabPanels = document.querySelectorAll('.tab-content');
 
+
 const webcamFeed = document.getElementById('webcam-feed');
 const captureBtn = document.getElementById('capture-btn');
-const snapshotCanvas =document.getElementById('snapshot-canvas');
+const snapshotCanvas = document.getElementById('snapshot-canvas');
 const ocrOutputText = document.getElementById('ocr-output-text');
 
 let totalHours = 0;
 let targetHours = 450;
 
-/**For loop for creating an event listener for each navbar button */
-tabButtons.forEach(button =>{
-    button.addEventListener('click', function(){
+/** For loop for creating an event listener for each navbar button */
+tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
         tabButtons.forEach(btn => btn.classList.remove('active'));
-
         tabPanels.forEach(panel => panel.classList.remove('active-view'));
 
         this.classList.add('active');
-
         const targetedTabId = this.getAttribute('data-target');
-
         document.getElementById(targetedTabId).classList.add('active-view');
+
+        if (targetedTabId === "scanner-tab") {
+            // Give the browser a tiny 50ms break to render the tab visually before firing the lens!
+            setTimeout(startWebcam, 50);
+        } else {
+            stopWebcam();
+        }
     });
 });
 
-function startWebcam(){
-    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+function startWebcam() {
+    // Reverify the element exists live in case it was null at startup
+    const liveVideoElement = document.getElementById('webcam-feed');
+    
+    if (!liveVideoElement) {
+        console.error("The video HTML tag could not be found yet!");
+        return;
+    }
 
-        navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}})
-            .then(function(stream){
-                webcamFeed.srcObject = stream;
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // Fallback: If environment (rear camera) fails or isn't there, default to standard true video
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+            .then(function(stream) {
+                liveVideoElement.srcObject = stream;
+                // Force play command explicitly to shock the video feed out of a black sleep state
+                liveVideoElement.play().catch(err => console.log("Auto-play blocked: ", err));
             })
-            .catch(function(error){
-                console.error("Webcam Access was blocked or denied: ", error);
-                ocrOutputText.textContent= "Error: Camera Access was denied by browser permissions.";
+            .catch(function(error) {
+                console.warn("Environment camera failed, trying default user webcam...", error);
+                // Fallback to whatever camera is available if phone layout mode causes a crash on desktop
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function(fallbackStream) {
+                        liveVideoElement.srcObject = fallbackStream;
+                        liveVideoElement.play();
+                    })
+                    .catch(function(finalErr) {
+                        console.error("Webcam Access completely blocked: ", finalErr);
+                        if(ocrOutputText) ocrOutputText.textContent = "Error: Camera Access was denied.";
+                    });
             });
     }
 }
 
-startWebcam();
+
+function stopWebcam() {
+    const liveVideoElement = document.getElementById('webcam-feed');
+    if (liveVideoElement && liveVideoElement.srcObject) {
+        const stream = liveVideoElement.srcObject;
+        const tracks = stream.getTracks();
+        tracks.forEach(track => track.stop());
+        liveVideoElement.srcObject = null;
+    }
+}
+
 
 function updateDashboard(){
     let remaining = targetHours -totalHours;
