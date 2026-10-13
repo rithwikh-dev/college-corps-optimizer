@@ -7,9 +7,27 @@ const progressBar = document.getElementById('hours-progress-bar');
 const dateInput = document.getElementById('date-input');
 const categorySelect = document.getElementById('category-select');
 const historyLogTable = document.getElementById('history-log-table');
+const tabButtons = document.querySelectorAll('.nav-btn');
+const tabPanels = document.querySelectorAll('.tab-content');
 
 let totalHours = 0;
 let targetHours = 450;
+
+/**For loop for creating an event listener for each navbar button */
+tabButtons.forEach(button =>{
+    button.addEventListener('click', function(){
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+
+        tabPanels.forEach(panel => panel.classList.remove('active-view'));
+
+        this.classList.add('active');
+
+        const targetedTabId = this.getAttribute('data-target');
+
+        document.getElementById(targetedTabId).classList.add('active-view');
+    });
+});
+
 
 function updateDashboard(){
     let remaining = targetHours -totalHours;

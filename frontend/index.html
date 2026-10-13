@@ -19,10 +19,20 @@
 </head>
 <body>
     <header>
+
         <h1>CollegeCorps Timesheet Optimizer</h1>
+
+        <nav class = "tab-navigation">
+                <button class = "nav-btn active" data-target ="dashboard-tab">Dashboard</button>
+
+                <button class = "nav-btn" data-target="scanner-tab">One-time Service Scanner</button>
+
+                <button class ="nav-btn" data-target ="excel-tab">Excel Logs</button>
+        </nav>
     </header>
 
-    <main class ="dashboard-container">
+    <main>
+        <section id="dashboard-tab" class="tab-content active-view dashboard-container">
         
         <section class ="card input-section">
 
@@ -80,6 +90,24 @@
                         
                     </table>
                 </div>
+            </section>
+        </section>
+
+        <!--Computer Vision Scanner section-->
+        <section id="scanner-tab" class="tab-content">
+            <div class ="card full-card">
+                <h2>One-time Service Webcam Scanner</h2>
+                <p>Position your half-page template form in front of your camera to extract data!</p>
+            </div>
+
+        </section>
+
+    <!--Excel Online integration section-->
+        <section id="excel-tab" class="tab-content">
+            <div class = "card full-card">
+                <h2>Microsoft Excel Online Sync</h2>
+                <p>Status: Ready to connect to Microsoft Graph API</p>
+            </div>
         </section>
 
     </main>

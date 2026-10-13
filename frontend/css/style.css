@@ -15,6 +15,14 @@ form{
     max-width: 200px;
 }
 
+header{
+    background-color: #1e3a8a;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(11, 3, 79, 0.5);
+}
+
 
 select{
     background-color: #e4e9f9;
@@ -59,7 +67,7 @@ tbody tr:hover{
 
 
 h1 {
-    color:#1e3a8a;
+    color:#acc0f8;
 }
 
 /*Stylization for date selection boxes*/
@@ -130,6 +138,42 @@ input[type="number"]{
 
 .stats-display strong{
     color: #1e3a8a;
+}
+
+.tab-content {
+    display: none !important;
+}
+
+.tab-content.active-view{
+    display: grid !important;
+}
+
+.tab-navigation{
+    display:flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.nav-btn{
+    background: transparent;
+    color: #cbd5e1;
+    border: none;
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+nav-btn:hover{
+    color:white;
+}
+
+.nav-btn.active{
+    color: white;
+    border-bottom: 2px solid #b97210;
 }
 
 #log-hours{
